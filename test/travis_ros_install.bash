@@ -10,8 +10,8 @@ sudo pip install rospkg
 cd ..
 git clone https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu16.04_server.git
 cd ./ros_setup_scripts_Ubuntu16.04_server
-bash ./setup0.bash
-bash ./setup1.bash
+bash ./step0.bash
+bash ./step1.bash
 
 #catkin setup
 mkdir -p ~/catkin_ws_src
