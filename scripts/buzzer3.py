@@ -8,7 +8,7 @@ def write_freq(hz=0):
         with open(bfile,"w") as f:
             f.write(str(hz) + "\n")
     except IOError:
-        rospy.logger("can't write to " + bfile)
+        rospy.logerr("can't write to " + bfile)
 
 def recv_buzzer(data):
    # rospy.loginfo(type(data))
