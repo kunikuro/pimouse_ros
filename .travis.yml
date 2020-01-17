@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: bionic
 
 script:
   - bash -xve ./test/travis_ros_install.bash
