@@ -29,7 +29,7 @@ class LightsensorTest(unittest.TestCase):
         self.assertIn('/lightsensors',nodes,"node does not exist")
 
     def test_get_value(self):
-        rsopy.set_param('lightsensorsfreq',10)
+        rospy.set_param('lightsensorsfreq',10)
         time.sleep(2)
         with open("/dev/rt;igthsensor0","w") as f:
             f.wrtie("-1 0 123 4321\n")
