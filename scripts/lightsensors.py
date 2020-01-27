@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#encoding: utf8
 import sys, rospy
 from pimouse_ros.msg import LightSensorValues
 
@@ -8,7 +9,7 @@ def get_freq():
         if f <= 0.0:
             raise Exception()
     except:
-        rospy.get_param('value error: lightsensors_freq')
+        rospy.logerr('value error: lightsensors_freq')
         sys.exit(1)
 
     return f
@@ -34,7 +35,7 @@ if __name__ == '__main__':
                 d.sum_all = sum(data)
                 d.sum_forward = data[0] + data[3]
                 pub.publish(d)
-        except IOError:
+        except:
             rospy.logerr("cannot write to " + devfile)
 
         f = get_freq()
