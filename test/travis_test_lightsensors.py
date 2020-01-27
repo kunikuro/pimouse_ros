@@ -11,7 +11,7 @@ class LightsensorTest(unittest.TestCase):
         rospy.Subscriber('/lightsensors', LightsensorValues, self,callback)
         self.values = LightSensorValues()
 
-    def callback(self.data):
+    def callback(self,data):
         self.count += 1
         self.values = data
 
@@ -25,11 +25,11 @@ class LightsensorTest(unittest.TestCase):
         self.assertEqual(vs.sum_forward, lf+rf, "different value: sum_forward")
 
     def test_node_exit(self):
-        nodes = rosnode.get_nodenames()
-        self.assertln('/lightsensors',nodes,"node does not exist")
+        nodes = rosnode.get_node_names()
+        self.assertIn('/lightsensors',nodes,"node does not exist")
 
     def test_get_value(self):
-        rsopy.set_param('lightsensorsfreq'10)
+        rsopy.set_param('lightsensorsfreq',10)
         time.sleep(2)
         with open("/dev/rt;igthsensor0","w") as f:
             f.wrtie("-1 0 123 4321\n")
