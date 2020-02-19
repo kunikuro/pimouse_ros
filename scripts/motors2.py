@@ -7,7 +7,7 @@ from std_srvs.srv import Trigger, TriggerResponse
 
 class Motor():
     def __init__(self):
-        if not self.set_power(True): sys.exit(1) #モーターの電源を切る
+        if not self.set_power(False): sys.exit(1)  #モーターの電源を切る
 
         rospy.on_shutdown(self.set_power)
         self.sub_raw = rospy.Subscriber('motor_raw', MotorFreqs, self.callback_raw_freq)
@@ -17,7 +17,7 @@ class Motor():
         self.last_time = rospy.Time.now()
         self.using_cmd_vel = False
 
-    def set_power(self, onoff=False):
+    def set_power(self,onoff=False):
         en = "/dev/rtmotoren0"
         try:
             with open(en,'w') as f:
@@ -29,7 +29,7 @@ class Motor():
 
         return False
 
-    def set_raw_freq(self, left_hz, right_hz):
+    def set_raw_freq(self,left_hz,right_hz):
         if not self.is_on:
             rospy.logerr("not enpowered")
             return
@@ -42,8 +42,8 @@ class Motor():
         except:
             rospy.logerr("cannot write to rtmotor_raw_*")
 
-    def callback_raw_freq(self, message):
-        self.set_raw_freq(message.left_hz, message.right_hz)
+    def callback_raw_freq(self,message):
+        self.set_raw_freq(message.left_hz,message.right_hz)
 
     def callback_cmd_vel(self, message):
         forward_hz = 80000.0*message.linear.x/(9*math.pi)
