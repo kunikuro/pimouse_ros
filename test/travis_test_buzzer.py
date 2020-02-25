@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #encoding: utf8
-import rospy, ittest, rostest, actionlib
+import rospy, unittest, rostest, actionlib
 import rosnode
 import time
 from std_msgs.msg import UInt16
